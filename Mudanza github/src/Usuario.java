@@ -38,6 +38,80 @@ public class Usuarios {
         String[] menu = {
                 "Crear usuario", "loguear", "Salir"
         };
+        int opcion;
+        do {
+            opcion = JOptionPane.showOptionDialog(null,
+                    "Menu",
+                    null,
+                    0,
+                    0,
+                    null,
+                    menu,
+                    menu[0]);
+
+            switch (opcion) {
+                case 0:
+                    validarNombreUsuario(this.nombreUsuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario"));
+                    JOptionPane.showMessageDialog(null,"La contraseña debe contener al menos un numero");
+                    validarNumeros(this.contrasenia = JOptionPane.showInputDialog("Ingrese su contrasenia"));
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+            }
+        }while (opcion != 2) ;
+
+    }
+
+    public  String validarNombreUsuario(String mensaje){
+        boolean flag;
+        String validar;
+
+        do{
+            flag=true;
+            validar=JOptionPane.showInputDialog(null,mensaje);
+            while(validar.isEmpty()){
+                validar=JOptionPane.showInputDialog(null,"Error"+mensaje);
+            }
+            for (int i = 0; i < validar.length(); i++) {
+                if(!Character.isAlphabetic(validar.charAt(i))){
+                    JOptionPane.showMessageDialog(null,"Ingresa el nombre, sin numeros");
+                    flag=false;
+                    break;
+                }
+
+            }
+
+        }while(!flag);
+        return validar;
+    }
+    public static int validarNumeros(String mensaje) {
+        boolean flag;
+        String valida;
+        do {
+            flag = true;
+            valida = JOptionPane.showInputDialog(mensaje);
+            while(valida.isEmpty()) {
+                valida = JOptionPane.showInputDialog("Error " + mensaje);
+            }
+            boolean contieneNumero = false;
+            for (int i = 0; i < valida.length(); i++) {
+                if (Character.isDigit(valida.charAt(i))) {
+                    contieneNumero = true;
+                    break;
+                }
+            }
+            if (!contieneNumero) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar al menos un numero.");
+                flag = false;
+            }
+
+
+        } while (!flag);
+        return Integer.parseInt(valida);
 
     }
 
