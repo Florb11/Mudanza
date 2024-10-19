@@ -34,7 +34,7 @@ public class Usuarios {
 
     //
 
-    public boolean loguear(String contraseniaPlataforma, String usuarioPlataforma){
+    public void loguear(){
         String[] menu = {
                 "Crear usuario", "loguear", "Salir"
         };
@@ -54,12 +54,23 @@ public class Usuarios {
                     validarNombreUsuario(this.nombreUsuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario"));
                     JOptionPane.showMessageDialog(null,"La contraseña debe contener al menos un numero");
                     validarNumeros(this.contrasenia = JOptionPane.showInputDialog("Ingrese su contrasenia"));
-
                     break;
                 case 1:
-
+                    int intentosloguear = 0;
+                    while (intentosloguear < 3) {
+                        String usuarioPlataforma = JOptionPane.showInputDialog("Ingrese su nombre de usuario");
+                        String contraseniaPlataforma = JOptionPane.showInputDialog("Ingrese su contraseña");
+                        if (this.nombreUsuario.equals(usuarioPlataforma) && this.contrasenia.equals(contraseniaPlataforma)) {
+                            JOptionPane.showMessageDialog(null, "todo correcto");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos intente de nuevo");
+                            intentosloguear++;
+                        }
+                    }
                     break;
                 case 2:
+                    JOptionPane.showMessageDialog(null,"Saliendo...");
+                    break;
 
             }
         }while (opcion != 2) ;
