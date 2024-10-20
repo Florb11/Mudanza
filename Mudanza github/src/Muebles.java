@@ -12,7 +12,8 @@ public class Muebles {
     public Muebles(int cantidadMuebles) {
         this.nombresMuebles = new String[cantidadMuebles];
         this.pesoItems = new String[cantidadMuebles];
-        this.items = new String[cantidadMuebles][2]; // esto se puede hacer?
+        this.items = new String[cantidadMuebles][2]; // dos columnas porque 1 nombres y otra peso
+         // Dudas con esto porque no sabia de que manera iniciar el constructor y lo busque
     }
 
 
