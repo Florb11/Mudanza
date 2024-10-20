@@ -24,7 +24,7 @@ public class Chofer extends Usuarios{
         boolean logueado = super.loguear(); // preguntar
         if(logueado){
             String[] opciones = {
-                    "Cargar camión","Verificar carga","Mover","Salir"
+                    "Cargar camion","Verificar carga","Mover","Salir"
             };
             int opcion;
             do {
@@ -38,7 +38,16 @@ public class Chofer extends Usuarios{
                         opciones[0]);
                 switch (opcion) {
                     case 0:
-                        JOptionPane.showMessageDialog(null, "Cargar camion");
+                        JOptionPane.showMessageDialog(null, "Cargando camion...");
+                        Camion camion1 = new Camion(1000,this);
+                        String[][] muebles = {
+                                {"Televisor", "15"},
+                                {"Mesa", "10"},
+                                {"Silla", "20"},
+                                {"Ropero", "90"},
+                                {"Alfombra", "5"}
+                        };
+                        Muebles muebles1 = new Muebles(muebles,)
                         break;
                     case 1:
                         JOptionPane.showMessageDialog(null, "Verificar carga");
@@ -55,5 +64,19 @@ public class Chofer extends Usuarios{
 
         }
         return logueado;
+    }
+    public boolean cargarCamion (Camion camion, Muebles muebles){
+        double pesoMuebles = muebles.getPesoTotal();
+        if (pesoMuebles <= camion.getCapacidad()) {
+            JOptionPane.showMessageDialog(null, "Los muebles se cargaron bien.");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pueden cargar los muebles, pesan mucho.");
+            return false;
+        }
+    }
+
+
+
     }
 }
