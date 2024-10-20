@@ -34,7 +34,17 @@ public class Usuarios {
 
     //
 
-    public void loguear(){
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                '}';
+    }
+
+    //
+
+    public boolean loguear(){
         String[] menu = {
                 "Crear usuario", "loguear", "Salir"
         };
@@ -51,21 +61,30 @@ public class Usuarios {
 
             switch (opcion) {
                 case 0:
-                    validarNombreUsuario(this.nombreUsuario = JOptionPane.showInputDialog("Ingrese su nombre de usuario"));
-                    JOptionPane.showMessageDialog(null,"La contraseña debe contener al menos un numero");
-                    validarNumeros(this.contrasenia = JOptionPane.showInputDialog("Ingrese su contrasenia"));
+                    if(this.nombreUsuario.equalsIgnoreCase("no asignado")) {
+                        this.nombreUsuario = validarNombreUsuario("Ingrese su nombre de usuario");
+                        this.contrasenia = validarNumeros("Ingrese su contraseña");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Ya esta registrado, puede ingresar");
+                    }
                     break;
                 case 1:
-                    int intentosloguear = 0;
-                    while (intentosloguear < 3) {
-                        String usuarioPlataforma = JOptionPane.showInputDialog("Ingrese su nombre de usuario");
-                        String contraseniaPlataforma = JOptionPane.showInputDialog("Ingrese su contraseña");
-                        if (this.nombreUsuario.equals(usuarioPlataforma) && this.contrasenia.equals(contraseniaPlataforma)) {
-                            JOptionPane.showMessageDialog(null, "todo correcto");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos intente de nuevo");
-                            intentosloguear++;
+                    if(!this.nombreUsuario.equalsIgnoreCase("no asignado") ) {
+                        int intentosloguear = 0;
+                        while (intentosloguear < 3) {
+                            String usuarioPlataforma = JOptionPane.showInputDialog("Ingrese su nombre de usuario");
+                            String contraseniaPlataforma = JOptionPane.showInputDialog("Ingrese su contraseña");
+                            if (this.nombreUsuario.equals(usuarioPlataforma) && this.contrasenia.equals(contraseniaPlataforma)) {
+                                JOptionPane.showMessageDialog(null, "todo correcto");
+                                return true;
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos intente de nuevo");
+                                intentosloguear++;
+                            }
+
                         }
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Primero cree un cuenta");
                     }
                     break;
                 case 2:
@@ -74,18 +93,18 @@ public class Usuarios {
 
             }
         }while (opcion != 2) ;
-
+        return false;
     }
 
-    public  String validarNombreUsuario(String mensaje){
+    public String validarNombreUsuario(String mensaje){
         boolean flag;
         String validar;
 
         do{
             flag=true;
-            validar=JOptionPane.showInputDialog(null,mensaje);
+            validar=JOptionPane.showInputDialog(mensaje);
             while(validar.isEmpty()){
-                validar=JOptionPane.showInputDialog(null,"Error"+mensaje);
+                validar=JOptionPane.showInputDialog("Error"+mensaje);
             }
             for (int i = 0; i < validar.length(); i++) {
                 if(!Character.isAlphabetic(validar.charAt(i))){
@@ -99,7 +118,7 @@ public class Usuarios {
         }while(!flag);
         return validar;
     }
-    public static int validarNumeros(String mensaje) {
+    public String validarNumeros(String mensaje) {
         boolean flag;
         String valida;
         do {
@@ -118,11 +137,13 @@ public class Usuarios {
             if (!contieneNumero) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar al menos un numero.");
                 flag = false;
+            }else{
+                JOptionPane.showMessageDialog(null,"Todo correcto");
             }
 
 
         } while (!flag);
-        return Integer.parseInt(valida);
+        return valida;
 
     }
 
