@@ -2,16 +2,19 @@ import java.util.Arrays;
 
 public class Muebles {
     //
-    String [][] items; // nombre y peso
-    private double pesoTotal;
+    private String items[][];
+    private String[] nombresMuebles; //nombres
+    private String[] pesoItems;
 
     //
 
 
-    public Muebles(String[][] items, double pesoTotal) {
-        this.items = items;
-        this.pesoTotal = pesoTotal;
+    public Muebles(int cantidadMuebles) {
+        this.nombresMuebles = new String[cantidadMuebles];
+        this.pesoItems = new String[cantidadMuebles];
+        this.items = new String[cantidadMuebles][2]; // esto se puede hacer?
     }
+
 
     public String[][] getItems() {
         return items;
@@ -21,20 +24,28 @@ public class Muebles {
         this.items = items;
     }
 
-    public double getPesoTotal() {
-        return pesoTotal;
+    public String[] getNombresMuebles() {
+        return nombresMuebles;
     }
 
-    public void setPesoTotal(double pesoTotal) {
-        this.pesoTotal = pesoTotal;
+    public void setNombresMuebles(String[] nombresMuebles) {
+        this.nombresMuebles = nombresMuebles;
+    }
+
+    public String[] getPesoItems() {
+        return pesoItems;
+    }
+
+    public void setPesoItems(String[] pesoItems) {
+        this.pesoItems = pesoItems;
     }
 
     @Override
     public String toString() {
         return "Muebles{" +
                 "items=" + Arrays.toString(items) +
-                ", pesoTotal=" + pesoTotal +
+                ", nombresMuebles=" + Arrays.toString(nombresMuebles) +
+                ", pesoItems=" + Arrays.toString(pesoItems) +
                 '}';
     }
-
 }

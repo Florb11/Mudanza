@@ -39,15 +39,7 @@ public class Chofer extends Usuarios{
                 switch (opcion) {
                     case 0:
                         JOptionPane.showMessageDialog(null, "Cargando camion...");
-                        Camion camion1 = new Camion(1000,this);
-                        String[][] muebles = {
-                                {"Televisor", "15"},
-                                {"Mesa", "10"},
-                                {"Silla", "20"},
-                                {"Ropero", "90"},
-                                {"Alfombra", "5"}
-                        };
-                        Muebles muebles1 = new Muebles(muebles,)
+
                         break;
                     case 1:
                         JOptionPane.showMessageDialog(null, "Verificar carga");
@@ -66,17 +58,33 @@ public class Chofer extends Usuarios{
         return logueado;
     }
     public boolean cargarCamion (Camion camion, Muebles muebles){
-        double pesoMuebles = muebles.getPesoTotal();
-        if (pesoMuebles <= camion.getCapacidad()) {
-            JOptionPane.showMessageDialog(null, "Los muebles se cargaron bien.");
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pueden cargar los muebles, pesan mucho.");
+        double totalPeso = 0;
+        if(muebles.getNombresMuebles().length > 0) {
+            for (int i = 0; i < muebles.getNombresMuebles().length; i++) {
+                muebles.getNombresMuebles()[i] = JOptionPane.showInputDialog("Ingrese el nombre del mueble");
+                muebles.getPesoItems()[i] = JOptionPane.showInputDialog("Ingrese el peso para el item " + muebles.getNombresMuebles()[i]);
+                muebles.getItems()[i][0] = muebles.getNombresMuebles()[i];
+                muebles.getItems()[i][1] = muebles.getPesoItems()[i];
+                totalPeso = totalPeso + Double.parseDouble(muebles.getPesoItems()[i]);
+
+            }
+            JOptionPane.showMessageDialog(null,"La suma total del peso es: "+ totalPeso);
+            if(totalPeso < camion.getCapacidad()){
+                JOptionPane.showMessageDialog(null,"La carga se puede hacer");
+                return true;
+            }else{
+                JOptionPane.showMessageDialog(null,"contrate un camion mas grande F");
+                return false;
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null,"No hay items que agregar");
             return false;
         }
-    }
-
-
 
     }
+
+
+
+
 }

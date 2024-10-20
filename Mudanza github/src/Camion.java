@@ -4,6 +4,7 @@ public class Camion {
     private double capacidad;
     private Chofer chofer;
 
+
     public Camion(double capacidad, Chofer chofer) {
         this.capacidad = capacidad;
         this.chofer = chofer;
