@@ -32,10 +32,10 @@ public class Chofer extends Usuarios{
 
     @Override
     public boolean loguear() {
-        boolean logueado = super.loguear(); // preguntar
+        boolean logueado = super.loguear(); // preguntar si esta bien hacer algo asi
         if(logueado){
             String[] opciones = {
-                    "Cargar camion","Verificar carga","Mover","Salir"
+                    "Cargar camion","Verificar carga","Salir"
             };
             int opcion;
             do {
@@ -61,13 +61,10 @@ public class Chofer extends Usuarios{
                         mostrarItems(this.muebles);
                         break;
                     case 2:
-                        JOptionPane.showMessageDialog(null, "Mover");
-                        break;
-                    case 3:
                         JOptionPane.showMessageDialog(null, "Salir");
                         break;
                 }
-            } while (opcion!=3);
+            } while (opcion!=2);
 
 
         }
