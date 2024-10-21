@@ -19,8 +19,8 @@ public class Cliente extends Usuarios{
         this.fechaMudanza = fechaMudanza;
     }
 
-    public Cliente(String nombreUsuario, String contrasenia) {
-        super(nombreUsuario, contrasenia);
+    public Cliente() {
+        super("flore", "b123");
     }
 
     public String getDireccionOrigen() {

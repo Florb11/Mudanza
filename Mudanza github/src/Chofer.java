@@ -8,8 +8,8 @@ public class Chofer extends Usuarios{
     //
 
 
-    public Chofer(boolean licenciaConducir, Muebles muebles) {
-        super("flor", "123");
+    public Chofer(String nombreUsuario, String contrasenia, boolean licenciaConducir, Muebles muebles) {
+        super(nombreUsuario, contrasenia);
         this.licenciaConducir = licenciaConducir;
         this.muebles = muebles;
     }
